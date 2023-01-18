@@ -31,6 +31,31 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
+    
+    
+    private lazy var passwordContainerView: AuthenticationInputView = {
+        let containerView = AuthenticationInputView(image: UIImage(systemName: "lock")!, textField: passwordTextField)
+        return containerView
+    }()
+    
+    private let passwordTextField: CustomTextField = {
+        let textField = CustomTextField(placeHolder: "Password ")
+        return textField
+    }()
+    
+    
+    private var stackView = UIStackView()
+    
+    private let loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Log In", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        button.isEnabled = false
+        return button
+    }()
+    
+    
     // MARK: - Life Cycles
     
     override func viewDidLoad() {
@@ -47,18 +72,24 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     
     private func style() {
-        
+        self.navigationController?.navigationBar.isHidden = true 
+        // Logo
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        // email
         emailContainerView.translatesAutoresizingMaskIntoConstraints = false
+        // stackView
+        stackView = UIStackView(arrangedSubviews: [emailContainerView,passwordContainerView,loginButton])
+        // login button
+        stackView.axis = .vertical
+        stackView.spacing = 14
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
     }
-    
     private func layout() {
-        
         view.addSubview(logoImageView)
-        view.addSubview(emailContainerView)
-        
-//        logoImageView.topAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.topAnchor).isActive = true
+        view.addSubview(stackView)
+// logoImageView.topAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.topAnchor).isActive = true
         
         NSLayoutConstraint.activate([
             // logo
@@ -66,14 +97,11 @@ extension LoginViewController {
             logoImageView.heightAnchor.constraint(equalToConstant: 150),
             logoImageView.widthAnchor.constraint(equalToConstant: 150),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
             // email
-            emailContainerView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 20),
-            emailContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            emailContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 32),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             emailContainerView.heightAnchor.constraint(equalToConstant: 50)
-            
-            
         ])
         
     }

@@ -35,6 +35,10 @@ class AuthenticationInputView: UIView {
             trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 8)
             
         ])
+        
+        layer.borderColor = UIColor.white.cgColor
+        layer.borderWidth = 0.77
+        layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {
