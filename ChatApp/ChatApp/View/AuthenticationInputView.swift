@@ -22,6 +22,11 @@ class AuthenticationInputView: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
         
+        let divierView = UIView()
+        divierView.backgroundColor = .white
+        divierView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(divierView)
+        
         NSLayoutConstraint.activate([
             // Container -> ImageView
             imageView.leadingAnchor.constraint(equalTo:  leadingAnchor, constant: 8),
@@ -32,13 +37,18 @@ class AuthenticationInputView: UIView {
             // Container -> EmailTextField
             textField.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
             textField.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
-            trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 8)
+            trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 8),
+            
+            divierView.heightAnchor.constraint(equalToConstant: 0.70),
+            divierView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            divierView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            divierView.trailingAnchor.constraint(equalTo: trailingAnchor)
             
         ])
         
-        layer.borderColor = UIColor.white.cgColor
-        layer.borderWidth = 0.77
-        layer.cornerRadius = 10
+//        layer.borderColor = UIColor.white.cgColor
+//        layer.borderWidth = 0.77
+//        layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {

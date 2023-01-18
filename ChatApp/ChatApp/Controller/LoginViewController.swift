@@ -11,6 +11,8 @@ class LoginViewController: UIViewController {
 
     // MARK: - Properties
     
+    private var viewModel = LoginViewModel()
+    
     private let logoImageView : UIImageView = {
        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -26,7 +28,7 @@ class LoginViewController: UIViewController {
         return containerView
     }()
     
-    private let emailTextField: CustomTextField = {
+    private var emailTextField: CustomTextField = {
         let textField = CustomTextField(placeHolder: "Email")
         return textField
     }()
@@ -38,7 +40,7 @@ class LoginViewController: UIViewController {
         return containerView
     }()
     
-    private let passwordTextField: CustomTextField = {
+    private var passwordTextField: CustomTextField = {
         let textField = CustomTextField(placeHolder: "Password ")
         return textField
     }()
@@ -66,10 +68,35 @@ class LoginViewController: UIViewController {
     }
 }
 
+// MARK: - Selector
+
+extension LoginViewController {
+    
+    @objc private func handleTextFieldChange(_ sender: UITextField){
+        
+        if sender == emailTextField {
+            viewModel.emailTextField = sender.text
+        }else {
+            viewModel.passwordTextField = sender.text
+        }
+        loginButtonStatus()
+    }
+}
+
 
 // MARK: - Helpers
 
 extension LoginViewController {
+    private func loginButtonStatus(){
+        
+        if  viewModel.status {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = .systemBlue
+        }else {
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        }
+    }
     
     private func style() {
         self.navigationController?.navigationBar.isHidden = true 
@@ -85,6 +112,9 @@ extension LoginViewController {
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
+        // email and password TextField
+        emailTextField.addTarget(self, action: #selector(handleTextFieldChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(handleTextFieldChange), for: .editingChanged)
     }
     private func layout() {
         view.addSubview(logoImageView)
