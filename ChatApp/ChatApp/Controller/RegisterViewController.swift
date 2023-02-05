@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 
 class RegisterViewController: UIViewController {
     
     // MARK: - Properties
+    
+    private var profileImageToUpload: UIImage?
     
     private var registerViewModel = RegisterViewModel()
     
@@ -72,7 +77,7 @@ class RegisterViewController: UIViewController {
     
     private var stackView = UIStackView()
 
-    private let registerButton: UIButton = {
+    private lazy var registerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -80,6 +85,7 @@ class RegisterViewController: UIViewController {
         button.isEnabled = false
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(handleRegisterButton), for: .touchUpInside)
         return button
     }()
     
@@ -97,11 +103,12 @@ class RegisterViewController: UIViewController {
         style()
         layout()
     }
-    
-    // MARK: - Selectors
+}
+// MARK: - Selectors
+
+extension RegisterViewController {
     
     @objc private func handleTextFieldChange(_ sender: UITextField){
-        
         if sender == emailTextField {
             registerViewModel.email = sender.text
             
@@ -114,6 +121,7 @@ class RegisterViewController: UIViewController {
         }
         registerButtonStatus()
     }
+    
     @objc private func handleGoToLoginView(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -122,6 +130,55 @@ class RegisterViewController: UIViewController {
         let picker = UIImagePickerController()
         picker.delegate = self
         self.present(picker, animated: true)
+    }
+    
+    @objc private func handleRegisterButton(_ sender: UIButton){
+        guard let emailText = emailTextField.text else {return}
+        guard let nameText = nameTextField.text else {return}
+        guard let usernameText = userNameTextField.text else {return}
+        guard let passwordText = passwordTextField.text else {return}
+        guard let profileImage = profileImageToUpload else {return}
+        
+        let photoName = UUID().uuidString
+        
+        guard let profileData = profileImage.jpegData(compressionQuality: 0.5) else {return}
+        
+        let referance = Storage.storage().reference(withPath: "media/profile_image/\(photoName).png")
+        
+        referance.putData(profileData) { storageMeta, error in
+            if let error = error {
+                print("error: \(error.localizedDescription)")
+            }
+            referance.downloadURL { url, error in
+                if let error = error {
+                    print("error: \(error.localizedDescription)")
+                }
+                guard let profileImageUrl = url?.absoluteString else {return}
+                
+                Auth.auth().createUser(withEmail: emailText, password: passwordText) { result, error in
+                    if let error = error {
+                        print("error: \(error.localizedDescription)")
+                    }
+                    
+                    guard let userUid = result?.user.uid else {return}
+                    let data = [
+                        "email": emailText,
+                        "name": nameText,
+                        "username" : usernameText ,
+                        "profileImageUrl": profileImageUrl,
+                        "uid": userUid
+                    ] as [String: Any]
+                    Firestore.firestore().collection("users").document(userUid).setData(data) { error in
+                        if let error = error {
+                            print("error: \(error.localizedDescription)")
+                        }
+                        print("Başarılı")
+                    }
+                    
+                }
+            }
+        }
+        
     }
 }
 
@@ -195,6 +252,7 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let image = info[.originalImage] as! UIImage
+        self.profileImageToUpload = image
         addCameraButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         addCameraButton.layer.cornerRadius = 150 / 2
         addCameraButton.clipsToBounds = true
