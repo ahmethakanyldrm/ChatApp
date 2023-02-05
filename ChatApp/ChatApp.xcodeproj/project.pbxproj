@@ -15,6 +15,8 @@
 		1C72B5002978304E000B8C3F /* AuthenticationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C72B4FF2978304E000B8C3F /* AuthenticationInputView.swift */; };
 		1C72B50229783211000B8C3F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C72B50129783211000B8C3F /* CustomTextField.swift */; };
 		1C72B50629783B35000B8C3F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C72B50529783B35000B8C3F /* LoginViewModel.swift */; };
+		1C927101298FADA5006EC41F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C927100298FADA5006EC41F /* RegisterViewController.swift */; };
+		1C927103298FB8A7006EC41F /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C927102298FB8A7006EC41F /* RegisterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		1C72B4FF2978304E000B8C3F /* AuthenticationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationInputView.swift; sourceTree = "<group>"; };
 		1C72B50129783211000B8C3F /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		1C72B50529783B35000B8C3F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		1C927100298FADA5006EC41F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		1C927102298FB8A7006EC41F /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				1C72B4E4297823D8000B8C3F /* LoginViewController.swift */,
+				1C927100298FADA5006EC41F /* RegisterViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				1C72B50529783B35000B8C3F /* LoginViewModel.swift */,
+				1C927102298FB8A7006EC41F /* RegisterViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -201,6 +207,8 @@
 			files = (
 				1C72B4E5297823D8000B8C3F /* LoginViewController.swift in Sources */,
 				1C72B4E1297823D8000B8C3F /* AppDelegate.swift in Sources */,
+				1C927101298FADA5006EC41F /* RegisterViewController.swift in Sources */,
+				1C927103298FB8A7006EC41F /* RegisterViewModel.swift in Sources */,
 				1C72B50629783B35000B8C3F /* LoginViewModel.swift in Sources */,
 				1C72B4FE297829A0000B8C3F /* UIViewController+Ext.swift in Sources */,
 				1C72B5002978304E000B8C3F /* AuthenticationInputView.swift in Sources */,

@@ -42,6 +42,7 @@ class LoginViewController: UIViewController {
     
     private var passwordTextField: CustomTextField = {
         let textField = CustomTextField(placeHolder: "Password ")
+        textField.isSecureTextEntry = true
         return textField
     }()
     
@@ -54,7 +55,19 @@ class LoginViewController: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         button.isEnabled = false
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
+        button.layer.cornerRadius = 10
         return button
+    }()
+    
+    private lazy var  switchRegistrationPage: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedTitle = NSMutableAttributedString(string: "Click To Become A Member", attributes: [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 14)])
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self, action: #selector(handleGoToRegisterView), for: .touchUpInside)
+        
+        return button
+        
     }()
     
     
@@ -81,7 +94,14 @@ extension LoginViewController {
         }
         loginButtonStatus()
     }
+    
+    @objc private func handleGoToRegisterView(_ sender: UIButton){
+        let controller = RegisterViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
+
+
 
 
 // MARK: - Helpers
@@ -115,10 +135,15 @@ extension LoginViewController {
         // email and password TextField
         emailTextField.addTarget(self, action: #selector(handleTextFieldChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextFieldChange), for: .editingChanged)
+        
+        //switch Button
+        switchRegistrationPage.translatesAutoresizingMaskIntoConstraints = false
+        
     }
     private func layout() {
         view.addSubview(logoImageView)
         view.addSubview(stackView)
+        view.addSubview(switchRegistrationPage)
 // logoImageView.topAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.topAnchor).isActive = true
         
         NSLayoutConstraint.activate([
@@ -131,7 +156,12 @@ extension LoginViewController {
             stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 32),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            emailContainerView.heightAnchor.constraint(equalToConstant: 50)
+            emailContainerView.heightAnchor.constraint(equalToConstant: 50),
+            // switch
+            switchRegistrationPage.topAnchor.constraint(equalTo: stackView.bottomAnchor,constant: 8),
+            switchRegistrationPage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            view.trailingAnchor.constraint(equalTo: switchRegistrationPage.trailingAnchor, constant: 32)
+            
         ])
         
     }
