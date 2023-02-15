@@ -12,6 +12,7 @@ class NewMessageViewController: UIViewController {
 // MARK: - Properties
     
     private let tableView = UITableView()
+    private var users = [User]()
     
 // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -19,6 +20,14 @@ class NewMessageViewController: UIViewController {
         style()
         layout()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Service.fetchUser { users in
+            self.users = users
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -29,7 +38,7 @@ extension NewMessageViewController {
         //tableView
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UserCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 75
         tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,12 +60,12 @@ extension NewMessageViewController {
 extension NewMessageViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier,for: indexPath)
-        cell.backgroundColor = .green
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier,for: indexPath) as! UserCell
+        cell.user = users[indexPath.row]
         return cell
     }
 }

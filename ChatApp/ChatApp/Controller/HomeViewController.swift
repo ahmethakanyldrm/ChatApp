@@ -32,7 +32,7 @@ extension HomeViewController {
         let button = UIButton(type: .system)
         button.setTitle(text, for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
         button.addTarget(self, action: selector, for: .touchUpInside)
         
         return button
@@ -97,6 +97,8 @@ extension HomeViewController {
         self.container.add(viewControllers[0])
         self.viewControllers[0].view.alpha = 0
         UIView.animate(withDuration: 1) {
+            self.messageButton.customView?.alpha = 1
+            self.newMessageButton.customView?.alpha = 0.5
             self.viewControllers[0].view.alpha = 1
             self.viewControllers[1].view.frame.origin.x = -1000
         } completion: { _ in
@@ -110,6 +112,8 @@ extension HomeViewController {
         self.container.add(viewControllers[1])
         self.viewControllers[1].view.alpha = 0
         UIView.animate(withDuration: 1) {
+            self.messageButton.customView?.alpha = 0.5
+            self.newMessageButton.customView?.alpha = 1
             self.viewControllers[1].view.alpha = 1
             self.viewControllers[0].view.frame.origin.x = 1000
         } completion: { _ in
