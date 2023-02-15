@@ -65,6 +65,7 @@ extension HomeViewController {
         self.navigationItem.leftBarButtonItems = [messageButton,newMessageButton]
         // container
         configureContainer()
+        handleMessageButton()
         
     }
     
@@ -102,8 +103,6 @@ extension HomeViewController {
             self.viewControllers[1].remove()
             self.viewControllers[1].view.frame.origin.x = 0
         }
-       
-        
     }
     
     @objc private func handleNewMessageButton(){
