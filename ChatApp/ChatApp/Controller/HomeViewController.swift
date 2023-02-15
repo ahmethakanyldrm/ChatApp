@@ -25,6 +25,11 @@ class HomeViewController: UIViewController {
         layout()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        handleMessageButton()
+    }
 }
 
 // MARK: - Helpers

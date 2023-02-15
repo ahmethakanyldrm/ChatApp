@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C2304D6299D1BB4007C6BD5 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2304D5299D1BB4007C6BD5 /* ChatInputView.swift */; };
+		1C2304D8299D2E4B007C6BD5 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2304D7299D2E4B007C6BD5 /* MessageCell.swift */; };
+		1C2304DA299D3943007C6BD5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2304D9299D3943007C6BD5 /* Message.swift */; };
 		1C41BF78299CE6EB0061BCB2 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 1C41BF77299CE6EB0061BCB2 /* JGProgressHUD */; };
 		1C4E818A299CF44E007D3487 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4E8189299CF44E007D3487 /* ContainerViewController.swift */; };
 		1C4E818C299CF47D007D3487 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4E818B299CF47D007D3487 /* MessageViewController.swift */; };
@@ -35,6 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C2304D5299D1BB4007C6BD5 /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
+		1C2304D7299D2E4B007C6BD5 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		1C2304D9299D3943007C6BD5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		1C4E8189299CF44E007D3487 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		1C4E818B299CF47D007D3487 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		1C4E818D299CF4B1007D3487 /* NewMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				1C827C4F299D1158001AFD67 /* User.swift */,
+				1C2304D9299D3943007C6BD5 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -145,6 +152,8 @@
 				1C72B4FF2978304E000B8C3F /* AuthenticationInputView.swift */,
 				1C72B50129783211000B8C3F /* CustomTextField.swift */,
 				1C4E818F299D064A007D3487 /* UserCell.swift */,
+				1C2304D5299D1BB4007C6BD5 /* ChatInputView.swift */,
+				1C2304D7299D2E4B007C6BD5 /* MessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C72B4E5297823D8000B8C3F /* LoginViewController.swift in Sources */,
+				1C2304D6299D1BB4007C6BD5 /* ChatInputView.swift in Sources */,
 				1C72B4E1297823D8000B8C3F /* AppDelegate.swift in Sources */,
 				1C927101298FADA5006EC41F /* RegisterViewController.swift in Sources */,
 				1C4E818A299CF44E007D3487 /* ContainerViewController.swift in Sources */,
@@ -267,12 +277,14 @@
 				1C4E8190299D064A007D3487 /* UserCell.swift in Sources */,
 				1C927110298FDC56006EC41F /* HomeViewController.swift in Sources */,
 				1C827C50299D1158001AFD67 /* User.swift in Sources */,
+				1C2304D8299D2E4B007C6BD5 /* MessageCell.swift in Sources */,
 				1C827C52299D1201001AFD67 /* Service.swift in Sources */,
 				1C72B50629783B35000B8C3F /* LoginViewModel.swift in Sources */,
 				1C827C57299D1689001AFD67 /* ChatViewController.swift in Sources */,
 				1C4E818E299CF4B1007D3487 /* NewMessageViewController.swift in Sources */,
 				1C72B4FE297829A0000B8C3F /* UIViewController+Ext.swift in Sources */,
 				1C72B5002978304E000B8C3F /* AuthenticationInputView.swift in Sources */,
+				1C2304DA299D3943007C6BD5 /* Message.swift in Sources */,
 				1C4E818C299CF47D007D3487 /* MessageViewController.swift in Sources */,
 				1C72B50229783211000B8C3F /* CustomTextField.swift in Sources */,
 			);
