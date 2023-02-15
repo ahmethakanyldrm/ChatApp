@@ -108,6 +108,15 @@ class RegisterViewController: UIViewController {
 
 extension RegisterViewController {
     
+    @objc private func handleWillShowNotification(){
+        self.view.frame.origin.y = -110
+        
+    }
+    
+    @objc private func handleWillHideNotification(){
+        self.view.frame.origin.y = 0
+    }
+    
     @objc private func handleTextFieldChange(_ sender: UITextField){
         if sender == emailTextField {
             registerViewModel.email = sender.text
@@ -139,44 +148,17 @@ extension RegisterViewController {
         guard let passwordText = passwordTextField.text else {return}
         guard let profileImage = profileImageToUpload else {return}
         
-        let photoName = UUID().uuidString
         
-        guard let profileData = profileImage.jpegData(compressionQuality: 0.5) else {return}
-        
-        let referance = Storage.storage().reference(withPath: "media/profile_image/\(photoName).png")
-        
-        referance.putData(profileData) { storageMeta, error in
+        let user = AuthenticationServiceUser(emailText: emailText, passwordText: passwordText, nameText: nameText, usernameText: usernameText)
+        showProgressHud(showProgress: true)
+        AuthenticationService.register(withUser: user, image: profileImage) { error in
             if let error = error {
-                print("error: \(error.localizedDescription)")
+                print("Error : \(error.localizedDescription)")
+                self.showProgressHud(showProgress: false)
+                return
             }
-            referance.downloadURL { url, error in
-                if let error = error {
-                    print("error: \(error.localizedDescription)")
-                }
-                guard let profileImageUrl = url?.absoluteString else {return}
-                
-                Auth.auth().createUser(withEmail: emailText, password: passwordText) { result, error in
-                    if let error = error {
-                        print("error: \(error.localizedDescription)")
-                    }
-                    
-                    guard let userUid = result?.user.uid else {return}
-                    let data = [
-                        "email": emailText,
-                        "name": nameText,
-                        "username" : usernameText ,
-                        "profileImageUrl": profileImageUrl,
-                        "uid": userUid
-                    ] as [String: Any]
-                    Firestore.firestore().collection("users").document(userUid).setData(data) { error in
-                        if let error = error {
-                            print("error: \(error.localizedDescription)")
-                        }
-                        print("Başarılı")
-                    }
-                    
-                }
-            }
+            self.showProgressHud(showProgress: false)
+            self.dismiss(animated: true)
         }
         
     }
@@ -199,8 +181,15 @@ extension RegisterViewController {
         }
     }
     
+    private func configureSetupKeyboard(){
+        NotificationCenter.default.addObserver(self, selector: #selector(handleWillShowNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleWillHideNotification), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     private func style() {
         configureGradientLayer()
+        configureSetupKeyboard()
         self.navigationController?.navigationBar.isHidden = true
         // addCameraButton
         addCameraButton.translatesAutoresizingMaskIntoConstraints = false

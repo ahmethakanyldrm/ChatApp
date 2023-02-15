@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 extension UIViewController {
     
@@ -15,6 +16,14 @@ extension UIViewController {
         gradient.colors = [UIColor.systemBlue.cgColor, UIColor.systemPink.cgColor]
         gradient.frame = view.bounds
         view.layer.addSublayer(gradient)
+    }
+    
+    func showProgressHud(showProgress: Bool){
+        let progressHud = JGProgressHUD()
+        progressHud.textLabel.text = "Plase Wait"
+        showProgress ? progressHud.show(in: view):progressHud.dismiss()
+        
+        
     }
     
 }
