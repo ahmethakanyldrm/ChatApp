@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1C41BF78299CE6EB0061BCB2 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 1C41BF77299CE6EB0061BCB2 /* JGProgressHUD */; };
+		1C4E818A299CF44E007D3487 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4E8189299CF44E007D3487 /* ContainerViewController.swift */; };
+		1C4E818C299CF47D007D3487 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4E818B299CF47D007D3487 /* MessageViewController.swift */; };
+		1C4E818E299CF4B1007D3487 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4E818D299CF4B1007D3487 /* NewMessageViewController.swift */; };
 		1C72B4E1297823D8000B8C3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C72B4E0297823D8000B8C3F /* AppDelegate.swift */; };
 		1C72B4E5297823D8000B8C3F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C72B4E4297823D8000B8C3F /* LoginViewController.swift */; };
 		1C72B4EA297823D9000B8C3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C72B4E9297823D9000B8C3F /* Assets.xcassets */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C4E8189299CF44E007D3487 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		1C4E818B299CF47D007D3487 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		1C4E818D299CF4B1007D3487 /* NewMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
 		1C72B4DD297823D8000B8C3F /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C72B4E0297823D8000B8C3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C72B4E4297823D8000B8C3F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +113,9 @@
 				1C72B4E4297823D8000B8C3F /* LoginViewController.swift */,
 				1C927100298FADA5006EC41F /* RegisterViewController.swift */,
 				1C92710F298FDC56006EC41F /* HomeViewController.swift */,
+				1C4E8189299CF44E007D3487 /* ContainerViewController.swift */,
+				1C4E818B299CF47D007D3487 /* MessageViewController.swift */,
+				1C4E818D299CF4B1007D3487 /* NewMessageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -236,12 +245,15 @@
 				1C72B4E5297823D8000B8C3F /* LoginViewController.swift in Sources */,
 				1C72B4E1297823D8000B8C3F /* AppDelegate.swift in Sources */,
 				1C927101298FADA5006EC41F /* RegisterViewController.swift in Sources */,
+				1C4E818A299CF44E007D3487 /* ContainerViewController.swift in Sources */,
 				1C92710E298FD91F006EC41F /* AuthenticationService.swift in Sources */,
 				1C927103298FB8A7006EC41F /* RegisterViewModel.swift in Sources */,
 				1C927110298FDC56006EC41F /* HomeViewController.swift in Sources */,
 				1C72B50629783B35000B8C3F /* LoginViewModel.swift in Sources */,
+				1C4E818E299CF4B1007D3487 /* NewMessageViewController.swift in Sources */,
 				1C72B4FE297829A0000B8C3F /* UIViewController+Ext.swift in Sources */,
 				1C72B5002978304E000B8C3F /* AuthenticationInputView.swift in Sources */,
+				1C4E818C299CF47D007D3487 /* MessageViewController.swift in Sources */,
 				1C72B50229783211000B8C3F /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
