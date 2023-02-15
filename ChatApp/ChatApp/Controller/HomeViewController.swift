@@ -13,7 +13,9 @@ class HomeViewController: UIViewController {
     private var messageButton: UIBarButtonItem!
     private var newMessageButton: UIBarButtonItem!
     private var container = Container()
-    private let viewControllers: [UIViewController] = [MessageViewController(), NewMessageViewController()]
+    private let messageViewController = NewMessageViewController()
+
+    private lazy var viewControllers: [UIViewController] = [MessageViewController(),messageViewController]
     
     // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -63,6 +65,7 @@ extension HomeViewController {
         newMessageButton = UIBarButtonItem(customView: configureBarItem(text: "New Message", selector: #selector(handleNewMessageButton)))
         
         self.navigationItem.leftBarButtonItems = [messageButton,newMessageButton]
+        self.messageViewController.delegate = self
         // container
         configureContainer()
         handleMessageButton()
@@ -122,6 +125,16 @@ extension HomeViewController {
         }
         
     }
+}
+
+extension HomeViewController: NewMessageViewControllerProtocol {
+    func goToChatView(user: User) {
+        let controller = ChatViewController(user: user)
+        self.navigationController?.pushViewController(controller, animated: true)
+        print(user.name)
+    }
+    
+    
 }
 
 
